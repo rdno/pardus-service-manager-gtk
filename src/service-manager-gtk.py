@@ -39,8 +39,8 @@ class MainWindow(gtk.Window):
         self.add(self.manager)
     def _set_style(self):
         self.set_title(_('Service Manager'))
-        self.set_default_size(483, 300)
-        #self.set_icon_name("?")
+        self.set_default_size(644, 400)
+        self.set_icon_name("flag")
     def _listen_signals(self):
         self.connect('destroy', gtk.main_quit)
     def run(self, args):

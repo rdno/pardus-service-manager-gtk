@@ -16,17 +16,38 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-def get_services(iface):
-    """get services as a dict
+import gtk
+import gobject
+
+def open_error_dialog(text):
+    """opens a gtk error dialog"""
+    dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
+                               buttons=gtk.BUTTONS_OK,
+                               message_format=text)
+    dialog.run()
+    dialog.destroy()
+
+def get_icon(name, size=32, flags=0):
+    """gets icon from gtk.IconTheme return Pixbuf
 
     Arguments:
-    - `iface`: backend.ServiceIface
+    - `name`: icon name
+    - `size`: icon size
+    - `flags`: the flags modifying the behavior of the icon lookup
     """
-    services = iface.services()
-    for service in services:
-        i = iface.info(service)
-        yield {"name": service,
-               "type": i[0],
-               "desc": i[1],
-               "state":i[2]}
-    #return service_dict
+    it = gtk.icon_theme_get_for_screen(gtk.gdk.Screen())
+    try:
+        return it.load_icon(name, size, flags)
+    except gobject.GError, e:
+        print unicode(e)
+
+def get_image(name, size=32, flags=0):
+    """gets icon from gtk.IconTheme return as Image
+
+    Arguments:
+    - `name`: icon name
+    - `size`: icon size
+    - `flags`: the flags modifying the behavior of the icon lookup
+    """
+    return gtk.image_new_from_pixbuf(get_icon(name, size, flags))
+

@@ -26,7 +26,6 @@ from dbus.mainloop.glib import DBusGMainLoop
 
 from service_manager_gtk.backend import ServiceIface
 from service_manager_gtk.translation import _
-from service_manager_gtk.utils import get_services
 from service_manager_gtk.widgets import ServiceBox
 
 class ServiceManager(gtk.VBox):

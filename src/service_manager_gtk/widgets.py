@@ -26,6 +26,8 @@ import gtk
 import gobject
 
 from service_manager_gtk.translation import _
+from service_manager_gtk.utils import get_image
+from service_manager_gtk.utils import get_icon
 
 class ServiceItem(gtk.Table):
     """service item widget"""
@@ -51,8 +53,13 @@ class ServiceItem(gtk.Table):
     def is_auto(self):
         """returns True if run at startup is true"""
         return (self._state == 'on') | (self._state == 'stopped')
+    def is_running(self):
+        """return True if service is running"""
+        return (self._state == 'on') | (self._state == 'started')
     def _create_ui(self):
         #create ui
+        self.icon = gtk.Image()
+
         self.name_lb = gtk.Label()
         self.name_lb.set_markup("<b>"+self._name+"</b>")
         self.name_lb.set_alignment(0.0, 0.5)
@@ -60,12 +67,16 @@ class ServiceItem(gtk.Table):
         self.desc_lb = gtk.Label(self._desc)
         self.desc_lb.set_alignment(0.0, 0.5)
 
-        self.start_btn = gtk.Button(_('Start'))
-        self.restart_btn = gtk.Button(_('Restart'))
-        self.stop_btn = gtk.Button(_('Stop'))
-
+        self.start_btn = gtk.Button()
+        self.start_btn.set_image(get_image('media-playback-start', 16))
+        self.restart_btn = gtk.Button()
+        self.restart_btn.set_image(get_image('view-refresh', 16))
+        self.stop_btn = gtk.Button()
+        self.stop_btn.set_image(get_image('media-playback-stop', 16))
         self.auto_cb = gtk.CheckButton(_('Run at startup'))
 
+        self.attach(self.icon, 0, 1, 0, 2,
+                    gtk.SHRINK, gtk.SHRINK)
         self.attach(self.name_lb, 1, 2, 0, 1,
                     gtk.EXPAND|gtk.FILL, gtk.SHRINK)
         self.attach(self.desc_lb, 1, 2, 1, 2,
@@ -90,6 +101,11 @@ class ServiceItem(gtk.Table):
     def _update_ui(self):
         self.auto_cb.set_active(self.is_auto())
         self.desc_lb.set_text(self._desc)
+        if self.is_running():
+            icon_name = 'flag-green'
+        else:
+            icon_name = 'flag-black'
+        self.icon.set_from_pixbuf(get_icon(icon_name, 32))
     def listen_signals(self, func):
         """listen signals
 
