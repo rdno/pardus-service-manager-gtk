@@ -69,10 +69,16 @@ class ServiceItem(gtk.Table):
 
         self.start_btn = gtk.Button()
         self.start_btn.set_image(get_image('media-playback-start', 16))
+        self.start_btn.set_tooltip_text(_('Start Service'))
+
         self.restart_btn = gtk.Button()
         self.restart_btn.set_image(get_image('view-refresh', 16))
+        self.restart_btn.set_tooltip_text(_('Restart Service'))
+
         self.stop_btn = gtk.Button()
         self.stop_btn.set_image(get_image('media-playback-stop', 16))
+        self.stop_btn.set_tooltip_text(_('Stop Service'))
+
         self.auto_cb = gtk.CheckButton(_('Run at startup'))
 
         self.attach(self.icon, 0, 1, 0, 2,
@@ -106,9 +112,12 @@ class ServiceItem(gtk.Table):
         self.desc_lb.set_text(self._desc)
         if self.is_running():
             icon_name = 'flag-green'
+            tip = _('Service is running')
         else:
             icon_name = 'flag-black'
+            tip = _('Service is not running')
         self.icon.set_from_pixbuf(get_icon(icon_name, 32))
+        self.icon.set_tooltip_text(tip)
     def listen_signals(self, func):
         """listen signals
 
