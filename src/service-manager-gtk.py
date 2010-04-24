@@ -50,7 +50,6 @@ class MainWindow(gtk.Window):
         - `args`: sys.argv
         """
         self.show_all()
-        print "run"
         gtk.main()
 
 if __name__ == '__main__':

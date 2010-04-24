@@ -50,8 +50,6 @@ class ServiceManager(gtk.VBox):
         self.pack_start(self.container,
                         fill=True, expand=True)
         self.container.show()
-        print "showed"
-        #self.add_items()
     def add_items(self):
         """adds services to ServiceBox"""
         for service in self.services:
