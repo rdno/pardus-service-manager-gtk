@@ -1,0 +1,17 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Categories=Application;Gtk;System;
+Comment[tr]=Sistem servislerini yönetmenizi sağlayan bir uygulama.
+Comment=An application for managing system services.
+Exec=service-manager-gtk
+GenericName[tr]=
+GenericName=
+Icon=flag
+MimeType=
+Name[tr]=Servis Yöneticisi GTK
+Name=Service Manager GTK
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application

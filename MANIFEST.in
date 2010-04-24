@@ -1,0 +1,5 @@
+include README
+include COPYING
+recursive-include po *.po
+recursive-include data *
+recursive-include icons *.png

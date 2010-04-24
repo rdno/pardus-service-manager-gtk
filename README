@@ -1,0 +1,14 @@
+Service Manager GTK is port of Pardus' service-manager.
+using milky flag icons
+
+To use:
+
+Make mo files with
+
+    $ make mo
+
+and start program
+
+    $ python src/service-manager-gtk.py
+
+Rıdvan Örsvuran 2010
