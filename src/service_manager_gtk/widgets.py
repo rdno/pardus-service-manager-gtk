@@ -69,17 +69,17 @@ class ServiceItem(gtk.Table):
 
         self.start_btn = gtk.Button()
         self.start_btn.set_image(get_image('media-playback-start', 16))
-        self.start_btn.set_tooltip_text(_('Start Service'))
+        self.start_btn.set_tooltip_text(_('Start service'))
 
         self.restart_btn = gtk.Button()
         self.restart_btn.set_image(get_image('view-refresh', 16))
-        self.restart_btn.set_tooltip_text(_('Restart Service'))
+        self.restart_btn.set_tooltip_text(_('Restart service'))
 
         self.stop_btn = gtk.Button()
         self.stop_btn.set_image(get_image('media-playback-stop', 16))
-        self.stop_btn.set_tooltip_text(_('Stop Service'))
+        self.stop_btn.set_tooltip_text(_('Stop service'))
 
-        self.auto_cb = gtk.CheckButton(_('Run at startup'))
+        self.auto_cb = gtk.CheckButton(_('Run at start'))
 
         self.attach(self.icon, 0, 1, 0, 2,
                     gtk.SHRINK, gtk.SHRINK)

@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-24 18:05+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Rıdvan Örsvuran <flasherdn@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/service-manager-gtk.py:41
+msgid "Service Manager"
+msgstr "Service Manager"
+
+#: src/service_manager_gtk/__init__.py:96
+msgid "Access Denied"
+msgstr "Access Denied"
+
+#: src/service_manager_gtk/widgets.py:72
+msgid "Start service"
+msgstr "Start service"
+
+#: src/service_manager_gtk/widgets.py:76
+msgid "Restart service"
+msgstr "Restart service"
+
+#: src/service_manager_gtk/widgets.py:80
+msgid "Stop service"
+msgstr "Stop service"
+
+#: src/service_manager_gtk/widgets.py:82
+msgid "Run at start"
+msgstr "Run at start"
+
+#: src/service_manager_gtk/widgets.py:115
+msgid "Service is running"
+msgstr "Service is running"
+
+#: src/service_manager_gtk/widgets.py:118
+msgid "Service is not running"
+msgstr "Service is not running"
+

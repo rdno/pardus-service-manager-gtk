@@ -1,0 +1,6 @@
+# List of source files containing translatable strings.
+
+#Python Files
+src/service-manager-gtk.py
+src/service_manager_gtk/__init__.py
+src/service_manager_gtk/widgets.py
