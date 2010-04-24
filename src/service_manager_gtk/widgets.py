@@ -94,9 +94,12 @@ class ServiceItem(gtk.Table):
         self._update_ui()
     def update(self, values):
         """update values"""
-        self._type = values[0]
-        self._desc = values[1]
-        self._state = values[2]
+        if values[0]:
+            self._type = values[0]
+        if values[1]:
+            self._desc = values[1]
+        if values[2]:
+            self._state = values[2]
         self._update_ui()
     def _update_ui(self):
         self.auto_cb.set_active(self.is_auto())
@@ -112,9 +115,17 @@ class ServiceItem(gtk.Table):
         Arguments:
         - `func`: callback function
         """
-        #print "TODO:listen signals @ServiceItem"
-
-
+        callback_data = lambda x: {'action':x,
+                                   'name':self._name,
+                                   'item':self}
+        self.start_btn.connect('clicked', func,
+                               callback_data('start'))
+        self.restart_btn.connect('clicked', func,
+                                 callback_data('restart'))
+        self.stop_btn.connect('clicked', func,
+                              callback_data('stop'))
+        self.auto_cb.connect('pressed', func,
+                             callback_data('auto'))
 gobject.type_register(ServiceItem)
 
 class ServiceBox(gtk.ScrolledWindow):

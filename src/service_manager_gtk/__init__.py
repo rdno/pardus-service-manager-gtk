@@ -26,6 +26,7 @@ from dbus.mainloop.glib import DBusGMainLoop
 
 from service_manager_gtk.backend import ServiceIface
 from service_manager_gtk.translation import _
+from service_manager_gtk.utils import open_error_dialog
 from service_manager_gtk.widgets import ServiceBox
 
 class ServiceManager(gtk.VBox):
@@ -65,8 +66,38 @@ class ServiceManager(gtk.VBox):
         """
         if not exception:
             self.container.set_item(name, args)
-    def on_item(self):
-        print "TODO:on_item"
-    def listen_comar(self, package, signal, args):
-        print "TODO:listen_comar", package, signal, args
+    def on_item(self, widget, data):
+        """listen ServiceItem signals
 
+        Arguments:
+        - `widget`: widget
+        - `data': {action:(start|stop|restart|auto),
+                   name:...
+                   item:ServiceItem object
+        """
+        action = data['action']
+        service_name = data['name']
+        item = data['item']
+        try:
+            if action == 'start':
+                if not item.is_running():
+                    self.iface.start(service_name)
+            elif action == 'stop':
+                if item.is_running():
+                    self.iface.stop(service_name)
+            elif action == 'restart':
+                if item.is_running():
+                    self.iface.restart(service_name)
+            elif action == 'auto':
+                self.iface.setEnable(service_name,
+                                     not widget.get_active())
+        except Exception, e:
+            if "Comar.PolicyKit" in e._dbus_error_name:
+                open_error_dialog(_('Access Denied'))
+            else:
+                open_error_dialog(unicode(e))
+    def listen_comar(self, name, signal, args):
+        #/var/db/comar3/models/System.Service.xml
+        if signal == "Changed":
+            self.container.set_item(name, (None, None, args[1]))
+            #self.iface.services(self.get_infos)
